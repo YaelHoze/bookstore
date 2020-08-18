@@ -14,7 +14,7 @@ checkmarx:
 
     configs:
       sast:
-        presetName: 'Checkmarx Default'
+        presetName: 'OWASP TOP 10 - 2013'
         incremental: 'false'
         # fileExtensions: 
         # engineConfiguration: 
