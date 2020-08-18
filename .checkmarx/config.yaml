@@ -1,0 +1,135 @@
+version: 1
+
+checkmarx: 
+  scan:
+    #optional
+    tags:
+       "fromConfig": "true"
+      #"test": ""
+
+    project:
+      tags: 
+        "fromConfig": "true"
+        #"test": ""
+
+    configs:
+      sast:
+        presetName: 'Checkmarx Default'
+        incremental: 'false'
+        # fileExtensions: 
+        # engineConfiguration: 
+        forceScan: true
+        fileExcludes: ''
+        folderExcludes: ''
+      sca:
+        fileExcludes: ''
+        folderExcludes: ''
+
+
+#Webhook integrations config
+webhooks:
+  actions: 
+    falsePositiveLabel: false_positive
+    #to check how exactly it works in git
+    blockMerge: true
+    
+    azure:
+      issueType: issue
+      apiVersion: 5.0
+
+  triggerScanFilters:
+    branches:
+      only:
+        - master
+        - develop
+#      ignore:
+#        - /feature-.*/
+
+#Ticketing systems config
+ticketingTargetSystems:
+  integrations:
+    jira:
+      project: APPSEC
+      issueType: Bug
+      priorities:
+        X: Y # Map Checkmarx severity : to JIRA Priority
+      openTransition: Reopen Issue
+      closeTransition: Close Issue
+      openStatus:
+        - Open
+        - In Progress
+        - Reopened
+      closedStatus:
+        - Closed
+        - Resolved
+      statusCategoryOpenName:
+        - To Do
+        - In Progress
+      statusCategoryClosedName:
+        - Done
+
+  policy:
+    openTicketsFilters:     
+      severity:
+        - High
+        - Medium
+      cwe:
+        - '79'
+        - '89'
+      category:
+        - XSS_Reflected
+        - SQL_Injection
+      status:
+        - Confirmed
+        - New
+
+
+#CI Pipeline integration tools / IDE plugins config
+Plugins:
+  config:
+    intellij:
+      someConfig: true
+    jenkins:
+      someConfig2: true
+      policy:
+        breakBuildFilters:
+          severity:
+            - High
+            - Medium
+    pluginX:
+      someConfig3: true
+
+#Reporting config
+reporting:
+  json:
+    fileNameFormat: "[TEAM]-[PROJECT]-[TIME].json"
+    dataFolder: "/tmp/cxflow"
+
+  cx_xml:
+    fileNameFormat: "[TEAM]-[PROJECT]-[TIME].xml"
+    dataFolder: "/tmp/cxflow"
+
+  csv:
+    fileNameFormat: "[TEAM]-[PROJECT]-[TIME].csv"
+    dataFolder: "/tmp/cxflow"
+    includeHeader: true
+    fields:
+      - header: Application
+        name: application
+        default_value: unknown
+      - header: severity
+        name: severity
+      - header: Vulnerability ID
+        name: summary
+        prefix: "[APP]:"
+      - header: file
+        name: filename
+      - header: Vulnerability ID
+        name: summary
+      - header: Vulnerability Name
+        name: category
+      - header: Category ID
+        name: cwe
+ 
+#Collaboration tools config
+#TBD
