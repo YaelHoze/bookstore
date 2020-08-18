@@ -14,7 +14,7 @@ checkmarx:
 
     configs:
       sast:
-        presetName: 'OWASP TOP 10 - 2013'
+        presetName: 'High and Medium'
         incremental: 'false'
         # fileExtensions: 
         # engineConfiguration: 
