@@ -5,7 +5,7 @@ checkmarx:
     #optional
     tags:
       # "fromConfig": "true"
-      #"test": ""
+      #"test": "123"
 
     project:
       tags: 
