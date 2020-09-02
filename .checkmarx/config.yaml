@@ -14,7 +14,7 @@ checkmarx:
 
     configs:
       sast:
-        presetName: 'High and Medium'
+        presetName: 'PCI'
         incremental: 'false'
         # fileExtensions: 
         # engineConfiguration: 
