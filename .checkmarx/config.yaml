@@ -14,7 +14,7 @@ checkmarx:
 
     configs:
       sast:
-        presetName: 'High and Medium'
+        presetName: 'Checkmarx Default'
         incremental: 'false'
         # fileExtensions: 
         # engineConfiguration: 
